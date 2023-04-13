@@ -24,6 +24,7 @@ uploadButton.addEventListener("click", async (event) => {
 		return;
 	}
 	try {
+		const Web3 = require('web3');
 		const web3 = new Web3(window.ethereum);
 		const accounts = await web3.eth.getAccounts();
 		const ipfs = new IpfsHttpClient({ host: "ipfs.infura.io", port: 5001, protocol: "https" });
