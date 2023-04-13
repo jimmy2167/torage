@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>IPFS File Uploader</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #212121;
+				color: #fff;
+				font-family: 'Roboto', sans-serif;
+			}
+			.container {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+			}
+			.title {
+				font-size: 36px;
+				font-weight: 700;
+				margin-bottom: 50px;
+			}
+			.input-group {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin-bottom: 50px;
+				width: 100%;
+				max-width: 500px;
+			}
+			.input-group label {
+				font-size: 18px;
+				margin-bottom: 10px;
+				text-align: center;
+			}
+			.input-group input[type="file"] {
+				display: none;
+			}
+			.upload-btn {
+				background-color: #4caf50;
+				border: none;
+				color: #fff;
+				padding: 12px 24px;
+				font-size: 18px;
+				font-weight: 500;
+				border-radius: 6px;
+				cursor: pointer;
+				transition: background-color 0.2s ease-in-out;
+			}
+			.upload-btn:hover {
+				background-color: #3e8e41;
+			}
+			.download-btn {
+				background-color: #2196f3;
+				border: none;
+				color: #fff;
+				padding: 12px 24px;
+				font-size: 18px;
+				font-weight: 500;
+				border-radius: 6px;
+				cursor: pointer;
+				transition: background-color 0.2s ease-in-out;
+			}
+			.download-btn:hover {
+				background-color: #1976d2;
+			}
+			.ipfs-hash-input {
+				width: 100%;
+				font-size: 18px;
+				padding: 12px 24px;
+				border-radius: 6px;
+				border: none;
+				margin-bottom: 20px;
+			}
+			.download-link {
+				display: none;
+			}
+			.connect-btn {
+				background-color: #2196f3;
+				border: none;
+				color: #fff;
+				padding: 12px 24px;
+				font-size: 18px;
+				font-weight: 500;
+				border-radius: 6px;
+				cursor: pointer;
+				transition: background-color 0.2s ease-in-out;
+			}
+			.connect-btn:hover {
+				background-color: #1976d2;
+			}
+			.alert {
+				background-color: #f44336;
+				color: #fff;
+				padding: 12px 24px;
+				font-size: 18px;
+				font-weight: 500;
+				border-radius: 6px;
+				margin-bottom: 20px;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+			<div class="container">
+		<h1 class="title">IPFS File Uploader</h1>
+		<div class="input-group">
+			<label for="file-input"><i class="fas fa-upload fa-3x"></i><br>Choose a file to upload</label>
+			<input type="file" id="file-input">
+			<button class="upload-btn" id="upload-btn">Upload</button>
+		</div>
+		<div class="input-group">
+			<label for="ipfs-hash-input">IPFS Hash</label>
+			<input type="text" id="ipfs-hash-input" readonly>
+			<a href="#" id="download-link" download></a>
+			<button class="download-btn" id="download-btn" disabled>Download</button>
+		</div>
+		<button class="connect-btn" id="connect-btn">Connect to IPFS</button>
+		<div class="alert" id="alert"></div>
+	</div>
+	<script src="app.js"></script>
+</body>
