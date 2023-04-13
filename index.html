@@ -1,130 +1,125 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>IPFS File Uploader</title>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-				background-color: #212121;
-				color: #fff;
-				font-family: 'Roboto', sans-serif;
-			}
-			.container {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				height: 100vh;
-			}
-			.title {
-				font-size: 36px;
-				font-weight: 700;
-				margin-bottom: 50px;
-			}
-			.input-group {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				margin-bottom: 50px;
-				width: 100%;
-				max-width: 500px;
-			}
-			.input-group label {
-				font-size: 18px;
-				margin-bottom: 10px;
-				text-align: center;
-			}
-			.input-group input[type="file"] {
-				display: none;
-			}
-			.upload-btn {
-				background-color: #4caf50;
-				border: none;
-				color: #fff;
-				padding: 12px 24px;
-				font-size: 18px;
-				font-weight: 500;
-				border-radius: 6px;
-				cursor: pointer;
-				transition: background-color 0.2s ease-in-out;
-			}
-			.upload-btn:hover {
-				background-color: #3e8e41;
-			}
-			.download-btn {
-				background-color: #2196f3;
-				border: none;
-				color: #fff;
-				padding: 12px 24px;
-				font-size: 18px;
-				font-weight: 500;
-				border-radius: 6px;
-				cursor: pointer;
-				transition: background-color 0.2s ease-in-out;
-			}
-			.download-btn:hover {
-				background-color: #1976d2;
-			}
-			.ipfs-hash-input {
-				width: 100%;
-				font-size: 18px;
-				padding: 12px 24px;
-				border-radius: 6px;
-				border: none;
-				margin-bottom: 20px;
-			}
-			.download-link {
-				display: none;
-			}
-			.connect-btn {
-				background-color: #2196f3;
-				border: none;
-				color: #fff;
-				padding: 12px 24px;
-				font-size: 18px;
-				font-weight: 500;
-				border-radius: 6px;
-				cursor: pointer;
-				transition: background-color 0.2s ease-in-out;
-			}
-			.connect-btn:hover {
-				background-color: #1976d2;
-			}
-			.alert {
-				background-color: #f44336;
-				color: #fff;
-				padding: 12px 24px;
-				font-size: 18px;
-				font-weight: 500;
-				border-radius: 6px;
-				margin-bottom: 20px;
-				display: none;
-			}
-		</style>
-	</head>
-	<body>
-		<script src="https://cdn.jsdelivr.net/npm/web3@1.9.0/dist/web3.min.js"></script>
-		
-		<!-- add your app.js file, which uses the web3 library, here -->
-		<script src="app.js"></script>
-			<div class="container">
-		<h1 class="title">IPFS File Uploader</h1>
-		<div class="input-group">
-			<label for="file-input"><i class="fas fa-upload fa-3x"></i><br>Choose a file to upload</label>
-			<input type="file" id="file-input">
-			<button class="upload-btn" id="upload-btn">Upload</button>
-		</div>
-		<div class="input-group">
-			<label for="ipfs-hash-input">IPFS Hash</label>
-			<input type="text" id="ipfs-hash-input" readonly>
-			<a href="#" id="download-link" download></a>
-			<button class="download-btn" id="download-btn" disabled>Download</button>
-		</div>
-		<button class="connect-btn" id="connect-btn">Connect to IPFS</button>
-		<div class="alert" id="alert"></div>
-	</div>
-	<script src="app.js"></script>
-</body>
+  <head>
+    <title>Blockchain File Storage</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      label {
+        font-weight: bold;
+      }
+      input[type="file"] {
+        margin: 10px 0;
+      }
+      button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+      .output {
+        margin: 20px 0;
+        text-align: center;
+      }
+      .output label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .output input {
+        width: 100%;
+        border: none;
+        background-color: #f2f2f2;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Store a File on the Blockchain</h1>
+      <form id="file-upload-form">
+        <label for="file-input">Select a file:</label>
+        <input type="file" id="file-input" name="fileInput">
+        <button type="submit">Upload File</button>
+      </form>
+      <div class="output">
+        <label for="file-hash">File hash:</label>
+        <input type="text" id="file-hash" readonly>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/ipfs-http-client"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.0.0-beta.36/dist/web3.min.js"></script>
+    <script>
+      const ipfs = new window.IpfsHttpClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
+      const contractAddress = '0x123abc'; // Replace with your own contract address
+      const contractABI = [/* Replace with your own contract ABI */];
+
+      window.addEventListener('load', async () => {
+        if (window.ethereum) {
+          window.web3 = new Web3(window.ethereum);
+          try {
+            await window.ethereum.enable();
+          } catch (error) {
+            console.error('User denied account access');
+          }
+        } else if (window.web3) {
+          window.web3 = new Web3(web3.currentProvider);
+        } else {
+          console.error('No Web3 provider detected');
+        }
+      });
+
+      // Add an event listener to the file upload form
+	  const fileUploadForm = document.getElementById('file-upload-form');
+      const fileInput = document.getElementById('file-input');
+      const fileHashInput = document.getElementById('file-hash');
+
+      fileUploadForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const file = fileInput.files[0];
+        const { cid } = await ipfs.add(file);
+
+        const accounts = await web3.eth.getAccounts();
+        const contract = new web3.eth.Contract(contractABI, contractAddress);
+        const transaction = contract.methods.storeHash(cid.string);
+
+        try {
+          const gas = await transaction.estimateGas({ from: accounts[0] });
+          const result = await transaction.send({ from: accounts[0], gas });
+          fileHashInput.value = cid.string;
+          console.log(result);
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    </script>
+  </body>
+</html>
+
