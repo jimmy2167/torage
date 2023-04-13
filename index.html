@@ -3,6 +3,9 @@
   <head>
     <title>Blockchain File Storage</title>
     <style>
+	    <script src="https://cdn.jsdelivr.net/npm/web3@1.0.0/dist/web3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@metamask/providers@0.2.7/dist/metamask-provider.min.js"></script>
+
       body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -73,6 +76,20 @@
         <input type="text" id="file-hash" readonly>
       </div>
     </div>
+	  <button id="connectButton" onclick="connectWallet()">Connect Wallet</button>
+
+<script>
+async function connectWallet() {
+  if (window.ethereum) {
+    try {
+      await window.ethereum.enable();
+      console.log('Wallet connected!');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+</script>
     <script src="https://cdn.jsdelivr.net/npm/ipfs-http-client"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.0.0-beta.36/dist/web3.min.js"></script>
     <script>
